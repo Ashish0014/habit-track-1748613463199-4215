@@ -1,0 +1,29 @@
+// src/App.tsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import { MainPage, HabitPage, LoginPage, RegisterPage } from './pages';
+import { Header, Footer } from './components/layout';
+import { UserProvider } from './context/UserContext';
+
+import './App.css';
+
+function App() {
+  return (
+    <UserProvider>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+          <Route path="/habit/:id" component={HabitPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
+          <Route component={() => <h1>404 Not Found</h1>} />
+        </Switch>
+        <Footer />
+      </Router>
+    </UserProvider>
+  );
+}
+
+export default App;
